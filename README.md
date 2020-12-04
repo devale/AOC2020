@@ -4,7 +4,7 @@ Advent of Code - 2020
 https://adventofcode.com/2020
 
 
-started a bit late, on 20201204. still, nice project to add some code skills :) 
+started a bit late (20201204). still, nice project to learn & improve some coding :) 
 
 ## day 1
 used some nested list comprehensions to get the result.
