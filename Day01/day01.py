@@ -26,7 +26,8 @@ for i in triple:
             result.append(i)
 print(result)
 
-#better by sgraaf:
+#better by sgraaf
+# https://github.com/sgraaf/Advent-of-Code-2020
 #print('--- Part Two ---')
 #for i, j, k in combinations(numlist, 3):
 #    if i + j + k == 2020:
@@ -36,4 +37,12 @@ print(result)
 #else:  # early stopping condition not reached
 #    print('Could not find three entries that sum to 2020')
 
-#better 2: create set_num, for each num in list, if 2020-num in set_num. 
+#better by maksverver 
+# https://github.com/maksverver/AdventOfCode/tree/master/2020
+#create set_num, for each num in list, if 2020-num in set_num. 
+#nums = set(int(line) for line in sys.stdin)
+# Part 1
+#for a in nums:
+#    b = 2020 - a
+#    if a < b and b in nums:
+#        print(a * b)
