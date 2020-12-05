@@ -19,3 +19,11 @@ example from sgraaf, list comprehension and sum :
 sum([(password[low-1] == letter) ^ (password[high-1] == letter) for low, high, letter, password in l])  # uses bitwise XOR
 
 ## day 3
+skiing was fun! first approach was to count how often a position would get hit (height / width /  steps_right). then in bed i remembered modulo. 
+added logging to the initial setup files. that works good. also, improved the reading in of files to new lines are skipped.
+
+## day 4
+the newline fix for reading in files, created in day 3's puzzle, proved not useful for day 4...! suddenly, each 'passport' consisted of multiple lines, and items of the passport had different separators (\n or space). the validation logic turned out a bit too verbose and could have been more generic with lambda functions and a function that checks a range. 
+
+because i could not assume that values were digits when casting to an int, i used try except logic. However, i see that others dont do that.
+
