@@ -1,5 +1,6 @@
 #import re #regex
 import os
+import timeit
 
 LOGGING = 0
 
@@ -72,4 +73,43 @@ for slope in slopes:
     result *= run_down(slope[0],slope[1])
 print(f'the total multiple = %d' % result)
 
+"""
+t = timeit.timeit( 'run_down(1 , 3)' , 'from __main__ import run_down', number=100 )
+print(t)
+#0.23440269999999996
+"""
 
+"""
+ # better by maksverver
+from functools import reduce
+from operator import mul
+#import sys
+
+grid = [line.rstrip() for line in f_list]
+H = len(grid)
+W = len(grid[0])
+
+def CountTrees(right, down):
+    trees = 0
+    row = 0
+    col = 0
+    while row < H:
+        trees += grid[row][col] == '#'
+        row += down
+        col += right
+        col %= W
+    return trees
+
+# Part 1
+#print(CountTrees(3, 1))
+
+# Part 2
+SLOPES = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
+print(reduce(mul, (CountTrees(r, d) for (r, d) in SLOPES)))
+
+#SLOPES = [(1,3)] 
+#t = timeit.timeit('reduce(mul, (CountTrees(r, d) for (r, d) in SLOPES))',  \
+#    'from __main__ import reduce, mul, CountTrees, SLOPES ', number=100 )
+#print(t)
+#0.007609399999999988
+"""
