@@ -10,7 +10,7 @@ started a bit late (20201204). still, nice project to learn & improve some codin
 used some nested list comprehensions to get the result.
 wouldve been better to use some itertools and/or set logic for better performance and less code. 
 
-## day 2
+## day 2: 
 for cleanup and splitting, used some replacements to spaces and split on spaces. if one of those characters would be part of a password, that would be an issue. 
 could be improved with a regex.
 
@@ -18,12 +18,14 @@ for the logic, i used a for loop. that could be improved by some set-based appro
 example from sgraaf, list comprehension and sum :
 sum([(password[low-1] == letter) ^ (password[high-1] == letter) for low, high, letter, password in l])  # uses bitwise XOR
 
-## day 3
+## day 3: skiing downhill
 skiing was fun! first approach was to count how often a position would get hit (height / width /  steps_right). then in bed i remembered modulo. 
 added logging to the initial setup files. that works good. also, improved the reading in of files to new lines are skipped.
 
-## day 4
+## day 4: passport checks
 the newline fix for reading in files, created in day 3's puzzle, proved not useful for day 4...! suddenly, each 'passport' consisted of multiple lines, and items of the passport had different separators (\n or space). the validation logic turned out a bit too verbose and could have been more generic with lambda functions and a function that checks a range. 
 
 because i could not assume that values were digits when casting to an int, i used try except logic. However, i see that others dont do that.
 
+## day 5 - seat ids
+this proved quite an easy task. the hardest part was getting the splitting of binary seats right, which is now written per letter. maybe this can be done a bit shorter, since most of the calculation is repeating the same logic/code. 
