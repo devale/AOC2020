@@ -34,7 +34,7 @@ def get_seat(seat):
         result = [r_start, col_start]
     else:
         print('no unique seat found for %s' % seat)
-        raise
+        
     return result
     
 
