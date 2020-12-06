@@ -31,5 +31,10 @@ because i could not assume that values were digits when casting to an int, i use
 this proved quite an easy task. the hardest part was getting the splitting of binary seats right, which is now written per letter. maybe this can be done a bit shorter, since most of the calculation is repeating the same logic/code. 
 part 2 was superfast because i already had all seatids and the logic is straightforward.
 
+## day 6: Custom Customs
+this went well. looks like a lot of these answers do follow the same kind of structure. define a funtion that returns a count of one particular object (passport, group, list of something) and then do some kind of aggregation on that list. Maybe the idea is that we can optimize this a lot by list comprehensions, less for loops, more set based approaches.
+
+
+
 
 
