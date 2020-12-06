@@ -40,4 +40,11 @@ print(f'sum of group lengths that have at least once answered question: %d' % su
 all_answered = [get_shared_chars(grp) for grp in f_list[:]]
 print(f'sum of group lenghts that have all answered the same question: %d' % sum([len(s) for s in all_answered]) )
 
+'''
+better solutions include set.union and set.intersect
+#better by maksverver
+groups = [[set(l) for l in g.split()] for g in f.read().split('\n\n')]
 
+print(sum(len(set.union(*g)) for g in groups))
+print(sum(len(set.intersection(*g)) for g in groups))
+'''
