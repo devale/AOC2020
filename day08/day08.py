@@ -52,7 +52,6 @@ def check_loop(i):
         if instr == 'acc': 
             acc += num 
             linenum += 1
-        
         try_count += 1
         #log(f'new linenum = %d' % linenum)
         if try_count == 10000:
@@ -61,13 +60,10 @@ def check_loop(i):
         if linenum == last_linenum:
             print('found exit!')
             break
-
     log(f'loop found at line %d and accumulator %d' % (linenum, acc) )
-    
     return acc, linenum, list_of_nop_jmp
 
 def change_loop(i, res):
-
     try_count = 0
     list_of_nop_jmp = list(res[2]) #copy of list, for timeit iterations
 
@@ -85,14 +81,10 @@ def change_loop(i, res):
             i2[change_nop_jmp] = i2[change_nop_jmp].replace('nop','jmp')
         else: 
             print('error replacing nop_jmp')
-
         chk = check_loop(i2)
         if chk[1] >= len(i) - 1:  #stop when last line reached
             break 
-    
     return chk, try_count
-
-    
 
 LOGGING = 0
 l = open_file('D:/GIT/AOC2020-1/day08/input.txt', sep='\n')
@@ -109,3 +101,53 @@ print(f'last acc = %d after %d tries' % (chk[0], try_count) )
 
 # timeit
 print(timefunc(10, change_loop, i, res))
+# average of 0.016 seconds
+
+
+'''
+#better solution by markwanders
+
+with open("input.txt") as f:
+    instructions = [line.strip().split(" ") for line in f.readlines()]
+
+
+def run_program(instr):
+    indices = set()
+    accumulator, index = 0, 0
+    while True:
+        instruction = instr[index][0]
+        argument = int(instr[index][1])
+        if instruction == "acc":
+            accumulator += argument
+            index += 1
+        elif instruction == "jmp":
+            index += argument
+        elif instruction == "nop":
+            index += 1
+        if index >= len(instr):
+            return 0, accumulator
+        if index in indices:
+            return 1, accumulator
+        indices.add(index)
+
+
+print(run_program(instructions)[1])
+
+
+def fix_program(instr):
+    for op in instr:
+        changed_instructions = instr.copy()
+        op_index = instr.index(op)
+        if op[0] == "jmp":
+            changed_instructions[op_index] = ["nop", op[1]]
+        elif op[0] == "nop":
+            changed_instructions[op_index] = ["jmp", op[1]]
+        else:
+            continue
+        answer = run_program(changed_instructions)
+        if answer[0] == 0:
+            return answer[1]
+
+
+print(fix_program(instructions))
+'''

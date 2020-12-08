@@ -38,6 +38,9 @@ this went well. looks like a lot of these answers do follow the same kind of str
 this day was quite hard for me. I realized ealy on it should've been solved with regex and recursive functions. However, the recursive part got me a bit stuck, so i reverted to a while loop + ToDo list (check bag for children, append children to todo list, keep popping until todo list is empty).
 It works, but with 100 lines of code! 
 
+## day 8: Handheld Halting
+the setting was really cool, combining some ligh-level coding in python on the low-level 'application instructions'. The task itself was actually not too difficult. Again I used some sort of todo.pop() structure, but as optimization limited the bruteforce method for part 2 to only those lines that were being used in part 1. Thereby only checking 17 lines instead of 135 tries. Also learned about list.index('a') method, and added some sets instead of lists here and there.  
+
 
 
 
