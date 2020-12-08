@@ -30,7 +30,6 @@ def check_loop(i):
     while linenum not in lines_done:
         lines_done.append(linenum)
         line = i[linenum]
-        previous_linenum = linenum
         last_jmp_num = 0
         #log(line)
         instr = line[:3]
