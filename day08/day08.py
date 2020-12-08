@@ -1,5 +1,6 @@
 import os
 import re
+import timeit
 
 # ideas
 # read file with a locator, so we can jump positions. seek()
@@ -8,6 +9,12 @@ import re
 def log(s):
     if LOGGING:
         print( str(s) )
+
+def timefunc(iter, function, *args):
+    def wrap():
+        function(*args)
+    t = timeit.Timer(wrap)
+    return t.timeit(iter) / iter #average
 
 def open_file(f_loc, sep='\n'):
     with open(f_loc, mode='r') as f:
@@ -21,14 +28,14 @@ def open_file(f_loc, sep='\n'):
 
 #part 1
 def check_loop(i):
-    lines_done = []
+    lines_done = set()
     acc, linenum, try_count = 0, 0, 0
   
     last_linenum = len(i) - 1 #zero index
-    list_of_nop_jmp = []
+    list_of_nop_jmp = set()
     
     while linenum not in lines_done:
-        lines_done.append(linenum)
+        lines_done.add(linenum)
         line = i[linenum]
         #log(line)
         line = line.split(" ")
@@ -37,10 +44,10 @@ def check_loop(i):
         num = int(line[1])
         #log(num)
         if instr == 'jmp': 
-            list_of_nop_jmp.append(linenum)
+            list_of_nop_jmp.add(linenum)
             linenum += num  
         elif instr=='nop':
-            list_of_nop_jmp.append(linenum)
+            list_of_nop_jmp.add(linenum)
             linenum += 1
         if instr == 'acc': 
             acc += num 
@@ -59,6 +66,34 @@ def check_loop(i):
     
     return acc, linenum, list_of_nop_jmp
 
+def change_loop(i, res):
+
+    try_count = 0
+    list_of_nop_jmp = list(res[2]) #copy of list, for timeit iterations
+
+    while True and try_count < 1000: #loop while we have not reached the last line
+        try_count += 1
+        i2 = dict(i) #get a new copy of dict every iteration
+
+        #change a jmp to nop
+        change_nop_jmp = list_of_nop_jmp.pop()
+        log(f'changing line %d and value %s' % ( change_nop_jmp, i2[change_nop_jmp] )  )
+        old_vals = i2[change_nop_jmp].split(" ")
+        if old_vals[0] == 'jmp':
+            i2[change_nop_jmp] = i2[change_nop_jmp].replace('jmp','nop')
+        elif old_vals[0] == 'nop':
+            i2[change_nop_jmp] = i2[change_nop_jmp].replace('nop','jmp')
+        else: 
+            print('error replacing nop_jmp')
+
+        chk = check_loop(i2)
+        if chk[1] >= len(i) - 1:  #stop when last line reached
+            break 
+    
+    return chk, try_count
+
+    
+
 LOGGING = 0
 l = open_file('D:/GIT/AOC2020-1/day08/input.txt', sep='\n')
 i = dict(enumerate(l))
@@ -67,36 +102,10 @@ i = dict(enumerate(l))
 res = check_loop(i)
 print(f'loop starts at linenum %d with accumulator %d' % (res[1], res[0]) )
 
-#optimalisatie: alleen de nop/jmp aanpassen die in de initiele run zitten. (het gaat om slechts 1 regel die we moeten aanpassen)
-
 #part 2. only change one(!) jmp to nop
-cont = 1
-try_count = 0
-list_of_nop_jmp = res[2]
-
-# get a list of all jmp instructions
-#jumpers = []
-#for k, v in i.items():
-#    line = v.split(" ")
-#    if line[0] == 'jmp': jumpers.append(k)    
-
-while cont and try_count < 1000: #loop while we have not reached the last line
-    #get a new copy of dict every iteration
-    i2 = dict(i)
-    #change last jmp to nop
-    #change_jmp = jumpers.pop()
-    change_nop_jmp = list_of_nop_jmp.pop()
-    log(f'changing line %d and value %s' % ( change_nop_jmp, i2[change_nop_jmp] )  )
-    old_vals = i2[change_nop_jmp].split(" ")
-    if old_vals[0] == 'jmp':
-        i2[change_nop_jmp] = i2[change_nop_jmp].replace('jmp','nop')
-    elif old_vals[0] == 'nop':
-        i2[change_nop_jmp] = i2[change_nop_jmp].replace('nop','jmp')
-    else: 
-        print('error replacing nop_jmp')
-
-    chk = check_loop(i2)
-    if chk[1] >= len(i) - 1: cont = 0 #stop when last line reached
-    try_count += 1
-
+#DONE: optimalisatie: alleen de nop/jmp aanpassen die in de initiele run zitten. (het gaat om slechts 1 regel die we moeten aanpassen)
+chk, try_count = change_loop(i, res)
 print(f'last acc = %d after %d tries' % (chk[0], try_count) )
+
+# timeit
+print(timefunc(10, change_loop, i, res))
