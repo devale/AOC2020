@@ -22,9 +22,8 @@ def open_file(f_loc, sep='\n'):
 #part 1
 def check_loop(i):
     lines_done = []
-    acc = 0
-    linenum = 0
-    try_count = 0
+    acc, linenum, try_count = 0, 0, 0
+  
     last_linenum = len(i) - 1 #zero index
     list_of_nop_jmp = []
     
