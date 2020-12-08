@@ -30,25 +30,17 @@ def check_loop(i):
     while linenum not in lines_done:
         lines_done.append(linenum)
         line = i[linenum]
-        last_jmp_num = 0
         #log(line)
         instr = line[:3]
         #log(instr)
-        if line[4:5] == '-': 
-            sign = -1
-        else: 
-            sign = 1
+        if line[4:5] == '-': sign = -1  
+        else: sign = 1
         num = int(line[5:]) * sign
         #log(num)
-        if instr == 'jmp':
-            last_jmp_num = int(linenum)
-            linenum += num
-
-        else: 
-            linenum += 1
-        if instr == 'acc':
-            acc += num
-
+        if instr == 'jmp': linenum += num  
+        else: linenum += 1
+        if instr == 'acc': acc += num 
+            
         try_count += 1
         #log(f'new linenum = %d' % linenum)
 
@@ -59,7 +51,7 @@ def check_loop(i):
             print('found exit!')
             break
 
-    log(f'loop found at line %d and accumulator %d. last jump was line %d' % (linenum, acc, last_jmp_num) )
+    log(f'loop found at line %d and accumulator %d' % (linenum, acc) )
     
     return acc, linenum
 
@@ -78,9 +70,8 @@ try_count = 0
 # get a list of all jmp instructions
 jumpers = []
 for k, v in i.items():
-    if v[:3] == 'jmp':
-        jumpers.append(k)
-
+    if v[:3] == 'jmp': jumpers.append(k)
+        
 while cont and try_count < 1000: #loop while we have not reached the last line
     #get a new copy of dict every iteration
     i2 = dict(i)
@@ -90,8 +81,7 @@ while cont and try_count < 1000: #loop while we have not reached the last line
     i2[change_jmp] = i2[change_jmp].replace('jmp','nop')
 
     chk = check_loop(i2)
-    if chk[1] >= len(i) - 1: #stop when last line reached
-        cont = 0
+    if chk[1] >= len(i) - 1: cont = 0 #stop when last line reached
     try_count += 1
 
 print(f'last acc = %d after %d tries' % (chk[0], try_count) )
