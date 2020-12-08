@@ -34,6 +34,12 @@ part 2 was superfast because i already had all seatids and the logic is straight
 ## day 6: Custom Customs
 this went well. looks like a lot of these answers do follow the same kind of structure. define a funtion that returns a count of one particular object (passport, group, list of something) and then do some kind of aggregation on that list. Maybe the idea is that we can optimize this a lot by list comprehensions, less for loops, more set based approaches.
 
+## day 7: Handy Haversacks
+this day was quite hard for me. I realized ealy on it should've been solved with regex and recursive functions. However, the recursive part got me a bit stuck, so i reverted to a while loop + ToDo list (check bag for children, append children to todo list, keep popping until todo list is empty).
+It works, but with 100 lines of code! 
+
+
+
 
 
 
