@@ -31,19 +31,17 @@ def check_loop(i):
         lines_done.append(linenum)
         line = i[linenum]
         #log(line)
-        instr = line[:3]
+        line = line.split(" ")
+        instr = line[0]
         #log(instr)
-        if line[4:5] == '-': sign = -1  
-        else: sign = 1
-        num = int(line[5:]) * sign
+        num = int(line[1])
         #log(num)
         if instr == 'jmp': linenum += num  
         else: linenum += 1
         if instr == 'acc': acc += num 
-            
+        
         try_count += 1
         #log(f'new linenum = %d' % linenum)
-
         if try_count == 10000:
             print('max tries reached')
             break
@@ -70,8 +68,8 @@ try_count = 0
 # get a list of all jmp instructions
 jumpers = []
 for k, v in i.items():
-    if v[:3] == 'jmp': jumpers.append(k)
-        
+    line = v.split(" ")
+    if line[0] == 'jmp': jumpers.append(k)    
 while cont and try_count < 1000: #loop while we have not reached the last line
     #get a new copy of dict every iteration
     i2 = dict(i)
