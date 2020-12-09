@@ -74,7 +74,20 @@ res = find_contiguous_list(data, 1212510616)
 print(f'the sum of first and last number of contiguous list of nums that sum to answer of part 1: %d' % (res[0] + res[-1]) )
 
 # timeit
-print(timefunc(10, find_contiguous_list, data, 1212510616))
+#print(timefunc(10, find_contiguous_list, data, 1212510616))
 # using sets: average of 1.09 seconds
 # using lists: average of 0.3475 seconds
+# using version from evanraalte: 0.0068 seconds
 
+
+'''
+#better by evanraalte using a generator. 
+def find_contiguous_list2(d, num):
+    d = [a for a in d if a < num ]
+    val = False
+    n = 2
+    while not val: #
+        val = next((min(d[i:i+n]) + max(d[i:i+n]) for i in range(0,len(d)-n) if sum(d[i:i+n]) == num),False)
+        n += 1
+    return val
+'''
