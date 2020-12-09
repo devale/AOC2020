@@ -26,11 +26,11 @@ def find_invalid_num(d, prenums=25):
         num = d[i]
         log(num)
         s_25 = set(d[i-prenums:i]) #set of previous numbers
-        log(f'set_25: %s' % (s_25) )
+        log(f'set_25: {s_25}' )
         
         #check if a combination can be made
         for j in s_25:
-            log(f'diff between num %d and setitem %d = %d' % (num, j, num-j) )
+            log(f'diff between num {num} and setitem {j} = {num-j}' )
             if num-j in s_25:
                 found = True
                 break
@@ -71,7 +71,7 @@ print(f'part 1: the invalid number that cannot be created: %d'  % find_invalid_n
 #part 2: find a list of contiguous numbers that sum up to the number found in part 1:  1212510616
 # then sum the lowest and highest number.
 res = find_contiguous_list(data, 1212510616)
-print(f'the sum of first and last number of contiguous list of nums that sum to answer of part 1: %d' % (min(res) + max(res)) )
+print(f'the sum of first and last number of contiguous list of nums that sum to answer of part 1: {min(res) + max(res)}' )
 
 # timeit
 #print(timefunc(10, find_contiguous_list, data, 1212510616))
