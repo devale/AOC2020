@@ -81,7 +81,20 @@ print(f'the sum of first and last number of contiguous list of nums that sum to 
 
 
 '''
-#better by evanraalte using a generator. 
+#part 1 better by amochtar
+from itertools import combinations
+def solve(d, prenums):
+    invalid = 0
+    for i in range(prenums, len(d)):
+        window = d[i-prenums:i]
+        if not any(sum(c) == d[i] for c in combinations(window, 2)):
+            invalid = d[i]
+            break
+        break
+    print("Part 1:", invalid)
+
+
+#part 2 better by evanraalte using a generator. 
 def find_contiguous_list2(d, num):
     d = [a for a in d if a < num ]
     val = False
@@ -90,10 +103,8 @@ def find_contiguous_list2(d, num):
         val = next((min(d[i:i+n]) + max(d[i:i+n]) for i in range(0,len(d)-n) if sum(d[i:i+n]) == num),False)
         n += 1
     return val
-'''
 
-'''
-# better by sgraaf
+# part 2 better by sgraaf
 sliding window with itertools.count
 for n in count(2):  # sliding window size
     for i in range(n-1, len(numbers)):
