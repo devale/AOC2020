@@ -51,8 +51,8 @@ def find_contiguous_list(d, num):
             s = d[sel_start:sel_end] #list
             total = sum(s)
             if total == num:
-                #return sorted(list(s)) #set
-                return sorted(s) #list
+                return s #set
+               
             else:
                 sel_end += 1 
         sel_start += 1
@@ -60,7 +60,7 @@ def find_contiguous_list(d, num):
 
 f_loc = 'D:/GIT/AOC2020-1/day09/input.txt'
 #set = {}, list = [], generator = ()
-data = [int(line) for line in open(f_loc, mode='r').read().split("\n")] #or read().splitlines()
+data = [int(line) for line in open(f_loc, 'r').read().split("\n")] #or read().splitlines() # = list(map(int, open('input.txt', 'r').readlines()))
 LOGGING = 0
 #i = dict(enumerate(data))
 
@@ -71,7 +71,7 @@ print(f'part 1: the invalid number that cannot be created: %d'  % find_invalid_n
 #part 2: find a list of contiguous numbers that sum up to the number found in part 1:  1212510616
 # then sum the lowest and highest number.
 res = find_contiguous_list(data, 1212510616)
-print(f'the sum of first and last number of contiguous list of nums that sum to answer of part 1: %d' % (res[0] + res[-1]) )
+print(f'the sum of first and last number of contiguous list of nums that sum to answer of part 1: %d' % (min(res) + max(res)) )
 
 # timeit
 #print(timefunc(10, find_contiguous_list, data, 1212510616))
@@ -90,4 +90,12 @@ def find_contiguous_list2(d, num):
         val = next((min(d[i:i+n]) + max(d[i:i+n]) for i in range(0,len(d)-n) if sum(d[i:i+n]) == num),False)
         n += 1
     return val
+'''
+
+'''
+# better by sgraaf
+sliding window with itertools.count
+for n in count(2):  # sliding window size
+    for i in range(n-1, len(numbers)):
+        window = numbers[i-n:i]
 '''
