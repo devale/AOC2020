@@ -39,7 +39,12 @@ this day was quite hard for me. I realized ealy on it should've been solved with
 It works, but with 100 lines of code! 
 
 ## day 8: Handheld Halting
-the setting was really cool, combining some ligh-level coding in python on the low-level 'application instructions'. The task itself was actually not too difficult. Again I used some sort of todo.pop() structure, but as optimization limited the bruteforce method for part 2 to only those lines that were being used in part 1. Thereby only checking 17 lines instead of 135 tries. Also learned about list.index('a') method, and added some sets instead of lists here and there.  
+the setting was really cool, combining some ligh-level coding in python on the low-level 'application instructions'. The task itself was actually not too difficult. Again I used some sort of todo.pop() structure, but as optimization limited the bruteforce method for part 2 to only those lines that were being used in part 1. Thereby only checking 17 lines instead of 135 tries. Also learned about list.index('a') method, and added some sets instead of lists here and there. 
+
+## day 9: Encoding Error
+todays assignment was quite easy to find a solution. it was a good practise to use an ' in set' solution,and sort the list afterwards.
+iterating over a list is faster, but comparing (is in) is faster for sets. in this case, lists were 3x faster than sets! 
+
 
 
 
