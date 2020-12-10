@@ -40,23 +40,35 @@ def find_invalid_num(d, prenums=25):
             return num
 
 def find_contiguous_list(d, num):
-    sel_start = 0
-    
+    sel_start, sel_end = 0, 0
+    total = d[0]
+
     #while sum of selection < num, take the next item.keep increasing pos_end until sum > num
-    while sel_start < len(d):
+    '''while sel_start < len(d):
         sel_end = sel_start + 1
         total = 0
         while total < num:
-            #s = set(d[sel_start:sel_end]) #set
-            s = d[sel_start:sel_end] #list
+            s = d[sel_start:sel_end] 
             total = sum(s)
             if total == num:
-                return s #set
+                return s 
                
             else:
                 sel_end += 1 
         sel_start += 1
     return -1
+    '''
+
+    while total != num:
+        if total < num:
+            sel_end += 1
+            total += d[sel_end]
+
+        else:
+            total -= d[sel_start]
+            sel_start += 1
+    return d[sel_start:sel_end]
+
 
 f_loc = 'D:/GIT/AOC2020-1/day09/input.txt'
 #set = {}, list = [], generator = ()
@@ -74,10 +86,12 @@ res = find_contiguous_list(data, 1212510616)
 print(f'the sum of first and last number of contiguous list of nums that sum to answer of part 1: {min(res) + max(res)}' )
 
 # timeit
-#print(timefunc(10, find_contiguous_list, data, 1212510616))
+print(timefunc(10, find_contiguous_list, data, 1212510616))
+                                            
 # using sets: average of 1.09 seconds
 # using lists: average of 0.3475 seconds
 # using version from evanraalte: 0.0068 seconds
+# using version from woy: 0.0005 seconds
 
 
 '''
@@ -93,6 +107,32 @@ def solve(d, prenums):
         break
     print("Part 1:", invalid)
 
+#part 2 better by amochtar
+def find_contiguous_list(d, num):
+    for i in range(len(d)):
+        j = i+2  # minimum of 2 numbers
+        while sum(d[i:j]) < num:
+            j += 1
+
+        if sum(d[i:j]) == num:
+            print("Part 2:", min(d[i:j]) + max(d[i:j]))
+            return
+
+#part2 better by WoY
+
+def find_contiguous_list3(d, num):
+    sel_start, sel_end = 0, 0
+    total = d[0]
+
+    while total != num:
+        if total < num:
+            sel_end += 1
+            total += d[sel_end]
+
+        else:
+            total -= d[sel_start]
+            sel_start += 1
+    return d[sel_start:sel_end]
 
 #part 2 better by evanraalte using a generator. 
 def find_contiguous_list2(d, num):
@@ -109,4 +149,18 @@ sliding window with itertools.count
 for n in count(2):  # sliding window size
     for i in range(n-1, len(numbers)):
         window = numbers[i-n:i]
+
+
+long rangeSum = input[0];
+
+
+            while (rangeSum != sum)
+            {
+                if (rangeSum < sum)
+                {
+                    rangeSum += input[++end];
+                }
+                else
+                {
+                    rangeSum -= input[start++];
 '''
