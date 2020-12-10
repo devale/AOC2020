@@ -43,27 +43,11 @@ def find_contiguous_list(d, num):
     sel_start, sel_end = 0, 0
     total = d[0]
 
-    #while sum of selection < num, take the next item.keep increasing pos_end until sum > num
-    '''while sel_start < len(d):
-        sel_end = sel_start + 1
-        total = 0
-        while total < num:
-            s = d[sel_start:sel_end] 
-            total = sum(s)
-            if total == num:
-                return s 
-               
-            else:
-                sel_end += 1 
-        sel_start += 1
-    return -1
-    '''
-
+    #if total is lower, increase total with next_value. if total is higher, remove first_value. this way it creeps down the list, until found.
     while total != num:
         if total < num:
             sel_end += 1
             total += d[sel_end]
-
         else:
             total -= d[sel_start]
             sel_start += 1
@@ -95,6 +79,25 @@ print(timefunc(10, find_contiguous_list, data, 1212510616))
 
 
 '''
+my first version
+def find_contiguous_list(d, num):
+    sel_start, sel_end = 0, 0
+    total = d[0]
+    
+    #while sum of selection < num, take the next item.keep increasing pos_end until sum > num
+    while sel_start < len(d):
+        sel_end = sel_start + 1
+        total = 0
+        while total < num:
+            s = d[sel_start:sel_end] 
+            total = sum(s)
+            if total == num:
+                return s 
+            else:
+                sel_end += 1 
+        sel_start += 1
+    return -1
+        
 #part 1 better by amochtar
 from itertools import combinations
 def solve(d, prenums):
