@@ -33,20 +33,27 @@ part 2 was superfast because i already had all seatids and the logic is straight
 
 ## Day 6: Custom Customs
 this went well. looks like a lot of these answers do follow the same kind of structure. define a funtion that returns a count of one particular object (passport, group, list of something) and then do some kind of aggregation on that list. Maybe the idea is that we can optimize this a lot by list comprehensions, less for loops, more set based approaches.
+objects: comprehensions
 
 ## Day 7: Handy Haversacks
 this day was quite hard for me. I realized ealy on it should've been solved with regex and recursive functions. However, the recursive part got me a bit stuck, so i reverted to a while loop + ToDo list (check bag for children, append children to todo list, keep popping until todo list is empty).
 It works, but with 100 lines of code! 
+objects: recursive functions
 
 ## Day 8: Handheld Halting
 the setting was really cool, combining some ligh-level coding in python on the low-level 'application instructions'. The task itself was actually not too difficult. Again I used some sort of todo.pop() structure, but as optimization limited the bruteforce method for part 2 to only those lines that were being used in part 1. Thereby only checking 17 lines instead of 135 tries. Also learned about list.index('a') method, and added some sets instead of lists here and there. 
+objects: sets, list.index
 
 ## Day 9: Encoding Error
 todays assignment was quite easy to find a solution. it was a good practise to use an ' in set' solution,and sort the list afterwards.
 iterating over a list is faster, but comparing (is in) is faster for sets. in this case, lists were 3x faster than sets! 
+objects: sets vs lists
 
 ## Day 10: Adapter Array
-part one i quickly found the algo to solve it, and im proud to see what i've learned so far. immediately thought about zipping together the list with a shifted position, and getting the diff in a list comprehension.
+part 1 i quickly found the algo to solve it, and im proud to see what i've learned so far. immediately thought about zipping together the list with a shifted position, and getting the diff in a list comprehension.
+part 2 was quite hard to understand at first. i thought i would be able to count splits/options and use a power function 2**splits, but after some trial and error and some hints, I found out that for each option, the number of combinations grows with the number of previous options. 
+objects: collections.defaultdict
+
 
 
 
