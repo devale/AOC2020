@@ -54,6 +54,9 @@ part 1 i quickly found the algo to solve it, and im proud to see what i've learn
 part 2 was quite hard to understand at first. i thought i would be able to count splits/options and use a power function 2**splits, but after some trial and error and some hints, I found out that for each option, the number of combinations grows with the number of previous options. 
 objects: collections.defaultdict
 
+## Day 11: Seating System
+part 1 taught me an important lesson. list.copy() does not make a deep copy! so nested lists are not independent, causing the new situation after one iteration to not be a parallel update of all cells. Instead, importing copy.deepcopy() makes a truly independent copy. 
+
 
 
 
