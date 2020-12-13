@@ -38,31 +38,25 @@ def check_surrounding_cells(d, pos, tolerance=3):
     y, x = pos[0], pos[1]
     max_x = len(d[0]) - 1
     max_y = len(d) - 1
-    for ydelta in range(-1,2):
-        for xdelta in range(-1,2):
-            x_check = x+xdelta 
-            y_check = y+ydelta
-            #skip when comparing itself, or out of matrix bounds
-            #log(f'for yx {y} {x}, checking y:{y_check} and x:{x_check}')
-            if ((xdelta == 0 and ydelta == 0 )  
-                or x_check < 0 or x_check > max_x 
-                or y_check < 0 or y_check > max_y): 
-                #log(f'out of bounds or self')
-                continue
-            elif d[y_check][x_check] != 1:
-                #log('not taken')
-                continue
-            else:
+
+    for ydelta, xdelta in [(yd,xd) for yd in (-1,0,1) for xd in (-1,0,1) if not (xd == yd == 0)]:   
+        x_check = x+xdelta 
+        y_check = y+ydelta
+        if 0 <= x_check <= max_x and 0 <= y_check <= max_y:   
+            if d[y_check][x_check] == 1:
                 #log(f'taken: yx-check {y_check},{x_check} has val: {d[y_check][x_check]}')
                 taken += 1
                 if taken > tolerance:
                     return taken
+            # else:log('not taken')
+        #else: log(f'out of bounds')
     return taken
 
 
-
 def check_sightline_cells(d, pos, tolerance=4):
-    '''count taken seats in sightlines (until tollerance) of position pos (x,y) and returns occupancy in next round  (True = seated, False = empty)'''
+    '''count taken seats in sightlines (until tollerance) of position pos (x,y) and returns occupancy in next round  (True = seated, False = empty)
+    can be optimized and integrated with previous part: instead of looping through all possible ranges, it can be an increasing factor (2, 3, 4 etc) times the surrounding seats (-1,-1),(-1,0) etc. in part 1.  
+    '''
     taken = 0
     y, x = pos[0], pos[1]
     max_x = len(d[0]) - 1
@@ -240,7 +234,7 @@ data = list(map(char_to_int, open(f_loc, 'r').readlines()))
 
 #part 1: run iterations until seating is stable
 #log(data)
-#print(f'part 1: {solve1(data)}')
+print(f'part 1: {solve1(data)}')
 # test: 37 occupied seats
 # real: 2489
 
@@ -250,6 +244,6 @@ data = list(map(char_to_int, open(f_loc, 'r').readlines()))
 # real: 2180
 
 # timeit
-print(f'timeit: {timefunc(3, solve2, data)}' )          
+print(f'timeit: {timefunc(1, solve2, data)}' )          
 # part 1: 9.5s
 # part 2: 41s
