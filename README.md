@@ -58,6 +58,10 @@ objects: collections.defaultdict
 part 1 taught me an important lesson. list.copy() does not make a deep copy! so nested lists are not independent, causing the new situation after one iteration to not be a parallel update of all cells. Instead, importing copy.deepcopy() makes a truly independent copy. 
 part 2 is finished, but performance suffered with with many for-loops, resulting in a whopping 41s. code refactoring can be done by not checking all values in len(grid), but first create a list of possible values to check. also, part 1 and part 2 can be integrated, because looking at adjacent seats is similar to looking at sightlines, where sightlines is a multiplication of adjacency.
 
+## Day 12: Rain Risk
+good to find a bit easier day in between, as i got lagging behind a bit on the more difficult days. This day got me back into the radials vs degrees and cos/sin/tan calculations by navigating based on direct instructions (part 1) and on waypoint instructions (part 2). Good fun!
+
+
 
 
 
