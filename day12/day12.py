@@ -29,8 +29,14 @@ def degrees_to_pos(orientation, num):
 def pos_to_degrees(xw, yw):
     return round(math.degrees(math.atan2(yw, xw)) )
 
-def solve1(instr):
+def rotate(x,y,degrees):
+    rad = (degrees/90) * (math.pi/2)
+    return (
+        round(x * math.cos(rad) - y * math.sin(rad)),
+        round(x * math.sin(rad) + y * math.cos(rad))
+    )
 
+def solve1(instr):
     x, y = 0, 0
     orientation = 90
     for i in instr:
@@ -74,12 +80,10 @@ def solve2(instr):
             yw, xw = degrees_to_pos(orientation, vector) #get position of waypoint using degrees and vector
             log(f'new orientation {orientation} and waypoint {xw},{yw}')
             '''
-            if i == "L90" or i =="R270": # spin the waypoint around the ship
-        	    xw, yw = -yw, xw
-            elif i == "L270" or i == "R90":
-	            xw, yw = yw, -xw			
-            elif i == "L180" or i == "R180": 
-                xw,  yw = -xw, -yw
+            num_signed = num
+            if com == 'R':
+                num_signed *= -1
+            xw, yw = rotate(xw, yw, num_signed)         
 
         elif com =='F':
             x += xw * num
@@ -88,7 +92,7 @@ def solve2(instr):
         log(f'{i} => new position: {x},{y}, waypoint {xw},{yw}')
     return abs(x)+abs(y)
     
-LOGGING =  1
+LOGGING =  0
 
 f_loc = 'D:/GIT/AOC2020-1/day12/input.txt'
 #set = {}, list = [], generator = ()
@@ -106,7 +110,7 @@ print('\n---- part 2 ----')
 print(f'manhatten distance after changing waypoints and following forward instructions: {solve2(data)}') 
 # 29320 too low. 
 # 47717 . swapped L negative and R positive angle.
-# 46530. ditched the sin cas tan and used swapping of yw yx since all degrees are multiples of 90.
+# 46530. 
 
 # timeit
 #print(f'timeit: {timefunc(10, solve2, data)}' )          
