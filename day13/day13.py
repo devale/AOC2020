@@ -1,6 +1,7 @@
 import os
 import timeit
 import numpy as np
+from itertools import count
 
 # ideas
 # part1: for each bus, generate multiples until above my arrival time at the bus stop. then get the remainder in minutes. 
@@ -37,38 +38,24 @@ def solve1(d):
 def solve2(d):
     sched = d[1:]
 
-    #clean up: add indices, remove x.
-    sched_cl = [(i,int(b)) for i, b in enumerate(sched) if b!='x'] 
+    #clean up: add indices, remove x, sort
+    sched_cl = sorted([(i,int(b)) for i, b in enumerate(sched) if b!='x'] , reverse=True)
     log(sched_cl)
 
-    #generate possible values
-    pos_val = set()
-    base = sched_cl[0][1]
-    for j in range(1,1000000000):
-        for i,b in sched_cl:
-            num = (j*b) + i
-            if num % base == 0:
-                pos_val.add( (j*b) + i )
-    
-    pos_val = sorted(pos_val) #set
-    log(pos_val)
-
-    stable = False
-    for val in pos_val:
-        if stable:
-            break
-        stable = True
-        for t, bus in sched_cl:
-            if (val+t) % bus == 0:
-                continue      
-            else: 
-                stable = False
+    t, step = 0, 1
+    for index, bus in sched_cl:
+        for c in count(t, step):
+            log(f'c = {c}, index={index}, step={step}, bus={bus}')
+            if (c + index) % bus == 0:
+                t, step = c, step * bus
+                log(f'step = {step}')
                 break
-    return val - base
+    return t
+
     
 LOGGING =  0
 
-f_loc = 'D:/GIT/AOC2020-1/day13/input-test4.txt'
+f_loc = 'D:/GIT/AOC2020-1/day13/input.txt'
 #set = {}, list = [], generator = ()
 data = [int(x)  for line in open(f_loc, 'r').read().rstrip().split("\n") for x in line.split(',') if x != 'x' ] #or read().splitlines() 
 data2 = [x for line in open(f_loc, 'r').read().rstrip().split("\n") for x in line.split(',') ]
