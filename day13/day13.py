@@ -42,15 +42,16 @@ def solve2(d):
     sched_cl = sorted([(i,int(b)) for i, b in enumerate(sched) if b!='x'] , reverse=True)
     log(sched_cl)
 
-    t, step = 0, 1
+    #they are all prime numbers
+    start, step = 0, 1
     for index, bus in sched_cl:
-        for c in count(t, step):
-            log(f'c = {c}, index={index}, step={step}, bus={bus}')
+        for c in count(start, step):
+            log(f'c= {c}, step={step}, index={index}, bus={bus}')
             if (c + index) % bus == 0:
-                t, step = c, step * bus
+                start, step = c, step * bus #prime so we can step through them by product of step and bus
                 log(f'step = {step}')
                 break
-    return t
+    return start
 
     
 LOGGING =  0
@@ -64,14 +65,14 @@ data2 = [x for line in open(f_loc, 'r').read().rstrip().split("\n") for x in lin
 
 #part 1: follow nav instructions and see which position is landed.
 print('\n---- part 1 ----')
-#print(f'lowest waittime * busID: {solve1(data)}') # 1909372
+print(f'lowest waittime * busID: {solve1(data)}') # 1909372
 
 #part 2: nav instructions are about moving a waypoint in a relative position around the ship. F means move towards waypoint.
 print('\n---- part 2 ----')
-print(f': {solve2(data2)}') 
+print(f'timestamp minute when each bus leaves one minute after another: {solve2(data2)}') 
 
 
 # timeit
 #print(f'timeit: {timefunc(10, solve2, data)}' )          
-# part 1: 
-# part 2:
+# part 1: .07s
+# part 2: 0.002s
