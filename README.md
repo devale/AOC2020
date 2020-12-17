@@ -61,6 +61,11 @@ part 2 is finished, but performance suffered with with many for-loops, resulting
 ## Day 12: Rain Risk
 good to find a bit easier day in between, as i got lagging behind a bit on the more difficult days. This day got me back into the radials vs degrees and cos/sin/tan calculations by navigating based on direct instructions (part 1) and on waypoint instructions (part 2). Good fun!
 
+## Day 13: Shuttle Search
+part 2 proved really challenging to optimize for performance. the end result was in the trillions so brute force looping was out of the question. By applying some smart skipping of values, using properties of primes, we could increment/step each number (to test) with its previous number. 
+
+## Day 14: Docking Data
+learned about converting ints to binary values (format) and back (int). part 2: learned about itertools.product to generate combinations. 
 
 
 
