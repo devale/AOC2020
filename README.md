@@ -11,8 +11,7 @@ used some nested list comprehensions to get the result.
 wouldve been better to use some itertools and/or set logic for better performance and less code. 
 
 ## Day 2: password philosophy
-for cleanup and splitting, used some replacements to spaces and split on spaces. if one of those characters would be part of a password, that would be an issue. 
-could be improved with a regex.
+for cleanup and splitting, used some replacements to spaces and split on spaces. if one of those characters would be part of a password, that would be an issue. could be improved with a regex.
 
 for the logic, i used a for loop. that could be improved by some set-based approach, or list-comprehension.
 example from sgraaf, list comprehension and sum :
@@ -65,10 +64,11 @@ good to find a bit easier day in between, as i got lagging behind a bit on the m
 part 2 proved really challenging to optimize for performance. the end result was in the trillions so brute force looping was out of the question. By applying some smart skipping of values, using properties of primes, we could increment/step each number (to test) with its previous number. 
 
 ## Day 14: Docking Data
+creating memory encoders that changes values or change memory locations.
 learned about converting ints to binary values (format) and back (int). part 2: learned about itertools.product to generate combinations. 
 
-
-
+## Day 15: Rambunctious Recitation
+quick solution using bruteforce.
 
 
 
