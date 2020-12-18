@@ -68,7 +68,9 @@ creating memory encoders that changes values or change memory locations.
 learned about converting ints to binary values (format) and back (int). part 2: learned about itertools.product to generate combinations. 
 
 ## Day 15: Rambunctious Recitation
-quick solution using bruteforce.
+found a solution using bruteforce (per definition, as the Van Eck's number sequence does not repeat)
+
+
 
 
 
