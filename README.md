@@ -70,7 +70,7 @@ learned about converting ints to binary values (format) and back (int). part 2: 
 ## Day 15: Rambunctious Recitation
 found a solution using bruteforce (per definition, as the Van Eck's number sequence does not repeat)
 
-
+## Day 16: Ticket Translation
 
 
 
