@@ -30,14 +30,11 @@ data = [line for line in open(f_loc, 'r').read().rstrip().split("\n") ]
 #data = list(map(char_to_int, open(f_loc, 'r').readlines()))
 #i = dict(enumerate(data))
 
-#part 1: follow nav instructions and see which position is landed.
 print('\n---- part 1 ----')
 print(f': {solve1(data)}') # 1909372
 
-#part 2: nav instructions are about moving a waypoint in a relative position around the ship. F means move towards waypoint.
 print('\n---- part 2 ----')
-print(f': {solve2(data2)}') 
-
+print(f': {solve2(data)}') 
 
 # timeit
 #print(f'timeit: {timefunc(10, solve1, data)}' )          
