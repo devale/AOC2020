@@ -71,6 +71,8 @@ learned about converting ints to binary values (format) and back (int). part 2: 
 found a solution using bruteforce (per definition, as the Van Eck's number sequence does not repeat)
 
 ## Day 16: Ticket Translation
+a lot of parsing was quite ok to do. The harder parts were about deducting which positions a value could be. This was similar to deductive reasoning in sudoku puzzles. If there is 1 option for one value, then remove that option from other value's possibilities! 
+In part 2 i thought about saving ranges as actual range objects, as the check can be done as a simple 'if value in range() object' .
 
 
 
