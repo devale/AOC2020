@@ -19,7 +19,10 @@ def timefunc(iter, function, *args):
     t = timeit.Timer(wrap)
     return t.timeit(iter) / iter #average
 
-  
+
+def solve1(d):
+    pass  
+
 LOGGING =  1
 
 f_loc = 'D:/GIT/AOC2020-1/day14/input.txt'
@@ -31,10 +34,10 @@ data = [line for line in open(f_loc, 'r').read().rstrip().split("\n") ]
 #i = dict(enumerate(data))
 
 print('\n---- part 1 ----')
-print(f': {solve1(data)}') # 1909372
+print(f': {solve1(data)}') 
 
 print('\n---- part 2 ----')
-print(f': {solve2(data)}') 
+#print(f': {solve2(data)}') 
 
 # timeit
 #print(f'timeit: {timefunc(10, solve1, data)}' )          

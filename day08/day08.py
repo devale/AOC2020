@@ -110,7 +110,6 @@ print(timefunc(10, change_loop, i, res))
 with open("input.txt") as f:
     instructions = [line.strip().split(" ") for line in f.readlines()]
 
-
 def run_program(instr):
     indices = set()
     accumulator, index = 0, 0
